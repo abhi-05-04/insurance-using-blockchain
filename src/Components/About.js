@@ -103,31 +103,7 @@ export default function About() {
                                         <div className="card-body">
                                             <h5 className="card-title">Life Insurance</h5>
                                             <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                            {/* <a href="#" className="btn btn-primary">View Details</a> */}
-
-                                            {/* <!-- Button trigger modal --> */}
-                                            <div className="modal" tabIndex="-1">
-                                                <div className="modal-dialog">
-                                                    <div className="modal-content">
-                                                        <div className="modal-header">
-                                                            <h5 className="modal-title">Modal title</h5>
-                                                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div className="modal-body">
-                                                            <p>Modal body text goes here.</p>
-                                                        </div>
-                                                        <div className="modal-footer">
-                                                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                            <button type="button" className="btn btn-primary">Save changes</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                                View Details
-                                            </button>
-
-
+                                            <a href="/insurance" className="btn btn-primary">View Details</a>
                                         </div>
                                     </div>
                                 </div>
@@ -184,6 +160,7 @@ export default function About() {
 
 
                 <section className="">
+
                     <div className="container">
                         <div className="flex-row space-80 justify-content-between">
                             <div className="col-md-8">
@@ -288,10 +265,60 @@ export default function About() {
                         </div>
                     </div>
                 </section>
+                <section id="Contact">
+                    {/* <!-- Footer --> */}
+                    <footer className="page-footer font-small teal pt-4">
 
+                        {/* <!-- Footer Text --> */}
+                        <div className="container-fluid text-center text-md-left">
+
+                            {/* <!-- Grid row --> */}
+                            <div className="row">
+
+                                {/* <!-- Grid column --> */}
+                                <div className="col-md-6 mt-md-0 mt-3">
+
+                                    {/* <!-- Content --> */}
+                                    <h5 className="text-uppercase font-weight-bold">Footer text 1</h5>
+                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita sapiente sint, nulla, nihil
+                                        repudiandae commodi voluptatibus corrupti animi sequi aliquid magnam debitis, maxime quam recusandae
+                                        harum esse fugiat. Itaque, culpa?</p>
+
+                                </div>
+                                {/* <!-- Grid column --> */}
+
+                                <hr className="clearfix w-100 d-md-none pb-3" />
+
+                                {/* <!-- Grid column --> */}
+                                <div className="col-md-6 mb-md-0 mb-3">
+
+                                    {/* <!-- Content --> */}
+                                    <h5 className="text-uppercase font-weight-bold">Footer text 2</h5>
+                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio deserunt fuga perferendis modi earum
+                                        commodi aperiam temporibus quod nulla nesciunt aliquid debitis ullam omnis quos ipsam, aspernatur id
+                                        excepturi hic.</p>
+
+                                </div>
+                                {/* <!-- Grid column --> */}
+
+                            </div>
+                            {/* <!-- Grid row --> */}
+
+                        </div>
+                        {/* <!-- Footer Text --> */}
+
+                        {/* <!-- Copyright --> */}
+                        <div className="footer-copyright text-center py-3">© 2022 Copyright: 
+                            <a href="/"> charpaleabhi@gmail.com</a>
+                        </div>
+                        {/* <!-- Copyright --> */}
+
+                    </footer>
+                    {/* <!-- Footer --> */}
+                </section>
 
             </div>
 
         </div>
     );
-}
+}   

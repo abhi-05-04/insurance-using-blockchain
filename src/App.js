@@ -3,9 +3,11 @@ import './App.css';
 import Nav from './Components/Nav';
 import About from './Components/About';
 import React from 'react'
-import Insurance from './Screens/insurance';
+import Insurance from './Screens/Insurance';
 import Page404 from './Components/404';
 import Portfolio from './Screens/portfolio';
+import Healthinsurance from './Screens/Insurance/healthinsurance';
+import Claim from './Screens/Insurance/claim';
 // import { Login, DRegister, HRegister, UDashboard, Donar, DashBoard, ADashboard, CDashboard, HomePage,Transplant } from "./Screens/index";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -19,6 +21,8 @@ function App() {
         <Route path="/" element={<About />} />
         <Route path="insurance" element={<Insurance />} />
         <Route path='portfolio' element={<Portfolio />} />
+        <Route path='/insurance/healthinsurance' element={<Healthinsurance/>}/>
+        <Route path='/insurance/claim' element={<Claim/>}/>
         <Route path="*" element={<Page404 />} />
       </Routes>
     </BrowserRouter>
