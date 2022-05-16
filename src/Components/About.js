@@ -40,8 +40,8 @@ export default function About() {
                                     Blockchin-based Insurance to make it efficient than traditional  Method
                                 </h2>
                                 <p className="text-light" >
-
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad eos veniam officia iure repudiandae, totam consequuntur numquam fugiat sint, quasi optio, incidunt nostrum? Similique aperiam accusamus iusto obcaecati quasi molestias.
+                                    In current insurance industry the insuarance system is centralized i.e. only the manager can allocate the funds after the claim but in our system there will be a voting held after the claim and on the basis of results of voting the money will be allocated so the policy holders have more control over the assets than the traditional Method
+                                    also in our system we are accepting payment through the ether not like current industry so we are providing a safer way to invest in crypto-currency  
                                 </p>
                             </div >
                             <div id="About">
@@ -66,18 +66,20 @@ export default function About() {
                                 </div>
                                 <ul className="checkmark-list">
                                     <li>
-                                        first point
+                                        for application for the insuarance the user have to submit the credentials.
                                     </li>
                                     <li>
-                                        second point
+                                        for claim of the insuarance the user has to submit the documents regarding the claim,
                                     </li>
                                     <li>
-                                        third point
+                                        The manager will go through all the documents and examine them if he authorises the docs.
                                     </li>
                                     <li>
-                                        fourth point
+                                        There will be a voting session of 2 days for all the participants who have suscribed the insuarance policy if the result of the voting is more than 50% positive then the funds will be allocated to the claimer/recepient.  
                                     </li>
-                                    <li>sixth point</li>
+                                    <li>
+                                        if any condition above fails no money will be allocated to any subscriber.
+                                    </li>
                                 </ul>
                             </div>
                         </div>
