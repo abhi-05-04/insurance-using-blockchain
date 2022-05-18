@@ -1,21 +1,33 @@
 pragma solidity ^0.4.17;
-//TO DO:-line:75,90,; 
-contract InsuarenceFactory{
-    address[] public deployedInsuarences; //addresses of all deployed campaigns
 
-    //Deploys a new instance of a Insuarence and stores the resulting address
-    function createInsuarence(uint minimum, uint claimPer) public {
-        address newInsuarence = new Insuarence(minimum, claimPer, msg.sender);
-        deployedInsuarences.push(newInsuarence);
+contract InsuranceFactory{
+    address[] public deployedInsurances; //addresses of all deployed campaigns
+    address public admin;
+    mapping(address => address) public getInsurenceId;
+
+    modifier restricited() {
+        require(msg.sender == admin);
+        _;
+    }
+
+    function InsuranceFactory() public {
+        admin = msg.sender;
+    }
+
+    //Deploys a new instance of a Insurance and stores the resulting address
+    function createInsurance(string name, uint minimum, uint claimPer) public {
+        address newInsurance = new Insurance(name, minimum, claimPer, msg.sender);
+        deployedInsurances.push(newInsurance);
+        getInsurenceId[msg.sender] = newInsurance;
     }
     
-    //Returns a list of all deployed Insuarences
-    function getDeployedInsuarences() public view returns (address[]) {
-        return deployedInsuarences;
+    //Returns a list of all deployed Insurances
+    function getDeployedInsurances() public view returns (address[]) {
+        return deployedInsurances;
     }
 }
 
-contract Insuarence{
+contract Insurance{
     
     struct Claim{
         string descriptondoc; //describes why the Claim is being send
@@ -39,6 +51,7 @@ contract Insuarence{
         bool claimed;
     }
 
+    string insuranceName;
     address public manager; //address of person who is managing this campaign
     uint public claimPercentage; //additional value to be awarded after successful claim
     // mapping(address => bool) public members; //list of addresses for every person who has taken insuarance
@@ -55,7 +68,8 @@ contract Insuarence{
     }
     
     //constructor function that sets claimPercentage and the owner
-    function Insuarence(uint minimum, uint claimPer, address creator) public {
+    function Insurance(string name, uint minimum, uint claimPer, address creator) public {
+        insuranceName = name;
         manager = creator;
         minAmmount = minimum;
         claimPercentage = claimPer;
