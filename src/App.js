@@ -9,14 +9,26 @@ import Page404 from './Components/404';
 import Portfolio from './Screens/portfolio';
 import Healthinsurance from './Screens/Insurance/healthinsurance';
 import Claim from './Screens/Insurance/claim';
-import Admin from './Screens/Admin/index';
-
+import InsuranceFactory from '../ethereum/admin'
+import web3 from '../ethereum/web3'
 // import { Login, DRegister, HRegister, UDashboard, Donar, DashBoard, ADashboard, CDashboard, HomePage,Transplant } from "./Screens/index";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import web3 from '../ethereum/web3';
 
 
 function App() {
+  let accounts = await web3.eth.getAccounts();
+  let listofInsurence = await InsuranceFactory.methods.getDeployedInsurances().call();
+  print(listofInsurence.length);
+  if(listofInsurence.lenght == 0)
+  {
+    await InsuranceFactory.methods.createInsurance('Health Insurance',1,2).send({from: accounts[0]});
+    await InsuranceFactory.methods.createInsurance('Life Insurance',2,3).send({from: accounts[0]});
+    await InsuranceFactory.methods.createInsurance('Car Insurance',3,4).send({from: accounts[0]});
+  }
+  listofInsurence = await InsuranceFactory.methods.getDeployedInsurances().call();
+  print(listofInsurence.lenght);
   return (
     <BrowserRouter>
     <Nav></Nav>
