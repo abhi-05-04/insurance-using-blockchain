@@ -4,7 +4,7 @@ const insurancefactory = require('./build/InsuranceFactory.json');
 
 const provider=new HDWalletProvider(
 	'wave blame okay very copper title casual risk blade squeeze moral panda',
-    'https://mainnet.infura.io/v3/5cd63ae0543843139d2d9928396ccaec'
+    'https://ropsten.infura.io/v3/5cd63ae0543843139d2d9928396ccaec'
 );
 
 const web3=new Web3(provider);

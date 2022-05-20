@@ -66,6 +66,10 @@ contract Insurance{
         require(msg.sender == manager);
         _;
     }
+
+    function getName() public view returns(string){
+        return insuranceName;
+    }
     
     //constructor function that sets claimPercentage and the owner
     function Insurance(string name, uint minimum, uint claimPer, address creator) public {

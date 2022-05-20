@@ -1,16 +1,77 @@
 
-import React from 'react'
-import { useState, useEffect } from 'react'
+import React,{useEffect, useState} from 'react';
+// import { useState, useEffect } from 'react';
 import 'mdb-ui-kit/css/mdb.min.css'; //cdd
+import Insurance from '../../ethereum/insurance'
+import web3 from '../../ethereum/web3';
+import Insurancefactory from '../../ethereum/admin';
+import Web3 from 'web3';
 
+function Healthinsurance() {
 
+    // const webcall = async()=> {
+        
+    //   }
+    var [name, setName] = useState();
+    var [aadhar, setAadhar] = useState();
+    var [email, setEmail] = useState();
+    var [mobile, setMobile] = useState();
+    var [nominee, setNominee] = useState();
+    var [ether, setEther] = useState();
+    var [aadharImg, setAadharImg] = useState();
+    var [insurance, setInsurance] = useState();
+    
+    useEffect(() =>{
+        window.addEventListener('load', async function() {
+            let accounts = await web3.eth.getAccounts();
+            // let listofInsurence = await Insurancefactory.methods.getDeployedInsurances().call();
+            console.log(await Insurancefactory.methods.getDeployedInsurances().call());
+            setInsurance(Insurance((await Insurancefactory.methods.getDeployedInsurances().call())[0]));
+            // if((await insurance.methods.getDeployedInsurances().call()).length == 0)
+            // {
+            //   // await Insurancefactory.methods.createInsurance('Health Insurance',1,2).send({from: accounts[0]});
+            //   // await Insurancefactory.methods.createInsurance('Life Insurance',2,3).send({from: accounts[0]});
+            //   await Insurancefactory.methods.createInsurance('Car Insurance',3,4).send({from: accounts[0]});
+            // }
+            // console.log(await insurance.methods.getName().call());
+        });
+    })
+      
+    //   useEffect(()=>{
+    //     webcall();
+    //   },[])
 
-export default function healthinsurance() {
+    const getBase64 = async(e) => {
+        var document = "";
+        console.log(e.target.files[0]);
+        let reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+        reader.onload = () =>{
+            console.log(reader.result);
+            setAadharImg(reader.result);
+            // console.log(aadharImg)
+            // document = reader.result;
+        };
+        reader.onerror = function (error) {
+            console.log('Error: ', error);
+        };
+    }
 
+    const addMember = async() =>{
+        try{
+            const accounts = await web3.eth.getAccounts();
+            await insurance.methods.contribute(name,aadhar,email,mobile,aadharImg,nominee).send({
+                gas:'5000000',gasPrice:'60000000000',value: Web3.utils.toWei(ether,'ether'),from: accounts[0]
+            });
+        }
+        catch (err) {
+            alert("Error while adding Member");
+        }
+    }
 
-
-
-
+    const getInsurance = async() =>{
+        console.log(await insurance.methods.getName().call());
+    }
 
     return (
         <div style={{ paddingTop: 75 }}>
@@ -31,43 +92,43 @@ export default function healthinsurance() {
                                             <form>
                                                 <p class="text-uppercase">Your Applying Metamask id : </p>
                                                 <div className="form-floating mb-3">
-                                                    <input type="text" className="form-control" id="floatingInput" />
+                                                    <input type="text" className="form-control" id="floatingInput" onBlur={(event) => getInsurance} onChange={(event) => setName(event.target.value)}/>
                                                     <label htmlFor="floatingInput">Name</label>
                                                 </div>
 
                                                 <div className="form-floating mb-3">
-                                                    <input type="email" className="form-control" id="floatingInput" />
+                                                    <input type="email" className="form-control" id="floatingInput" onChange={(event) => setAadhar(event.target.value)}/>
                                                     <label htmlFor="floatingInput">Aadhar Card</label>
                                                 </div>
                                                 <div className="form-floating mb-3">
-                                                    <input type="email" className="form-control" id="floatingInput" />
+                                                    <input type="email" className="form-control" id="floatingInput" onChange={(event) => setEmail(event.target.value)}/>
                                                     <label htmlFor="floatingInput">Email address</label>
                                                 </div>
                                                 <div className="form-floating mb-3">
-                                                    <input type="email" className="form-control" id="floatingInput" />
+                                                    <input type="email" className="form-control" id="floatingInput" onChange={(event) => setMobile(event.target.value)}/>
                                                     <label htmlFor="floatingInput">Mobile Number</label>
                                                 </div>
 
                                                 <div className="form-group">
                                                     <label className="form-label" htmlFor="exampleFormControlFile1">Upload Aadhaar</label>
                                                     {/* <label htmlFor="exampleFormControlFile1">Upload Aadhaar</label> */}
-                                                    <input type="file" className="form-control-file" id="exampleFormControlFile1" />
+                                                    <input type="file" className="form-control-file" id="exampleFormControlFile1" onChange={getBase64}/>
                                                 </div>
                                                 <br />
                                                 <div className="form-floating mb-3">
-                                                    <input type="email" className="form-control" id="floatingInput" />
+                                                    <input type="email" className="form-control" id="floatingInput" onChange={(event) => setNominee(event.target.value)}/>
                                                     <label htmlFor="floatingInput">Nominee MetamaskID</label>
                                                 </div>
 
                                                 <div className="form-floating mb-3">
-                                                    <input type="email" className="form-control" id="floatingInput" />
+                                                    <input type="email" className="form-control" id="floatingInput" onChange={(event) => setEther(event.target.value)}/>
                                                     <label htmlFor="floatingInput">Ethers</label>
                                                 </div>
 
 
 
                                                 <div className="text-center pt-1 mb-5 pb-1">
-                                                    <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Apply</button>
+                                                    <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button" onClick={addMember}>Apply</button>
                                                 </div>
 
 
@@ -90,3 +151,5 @@ export default function healthinsurance() {
         </div>
     )
 }
+
+export default Healthinsurance;
