@@ -8,6 +8,8 @@ import Insurance from './Screens/Insurance';
 import Page404 from './Components/404';
 import Portfolio from './Screens/portfolio';
 import Healthinsurance from './Screens/Insurance/healthinsurance';
+import Carinsurance from './Screens/Insurance/carinsurance';
+import Lifeinsurance from './Screens/Insurance/lifeinsurance';
 import Claim from './Screens/Insurance/claim';
 import Admin from './Screens/Admin/index';
 // import InsuranceFactory from '../ethereum/admin'
@@ -46,6 +48,8 @@ function App() {
         <Route path="insurance" element={<Insurance />} />
         <Route path='portfolio' element={<Portfolio />} />
         <Route path='/insurance/healthinsurance' element={<Healthinsurance/>}/>
+        <Route path='/insurance/carinsurance' element={<Carinsurance/>}/>
+        <Route path='/insurance/lifeinsurance' element={<Lifeinsurance/>}/>
         <Route path='/insurance/claim' element={<Claim/>}/>
         <Route path='/admin' element={<Admin/>}/>
         <Route path="*" element={<Page404 />} />
