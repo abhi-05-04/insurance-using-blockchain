@@ -58,6 +58,7 @@ function Healthinsurance() {
     }
 
     const addMember = async() =>{
+        console.log(await insurance.methods.getName().call())
         try{
             const accounts = await web3.eth.getAccounts();
             await insurance.methods.contribute(name,aadhar,email,mobile,aadharImg,nominee).send({
@@ -65,13 +66,14 @@ function Healthinsurance() {
             });
         }
         catch (err) {
+            console.log(err);
             alert("Error while adding Member");
         }
     }
 
-    const getInsurance = async() =>{
-        console.log(await insurance.methods.getName().call());
-    }
+    // const getInsurance = async() =>{
+    //     console.log(await insurance.methods.getName().call());
+    // }
 
     return (
         <div style={{ paddingTop: 75 }}>
@@ -92,7 +94,7 @@ function Healthinsurance() {
                                             <form>
                                                 <p class="text-uppercase">Your Applying Metamask id : </p>
                                                 <div className="form-floating mb-3">
-                                                    <input type="text" className="form-control" id="floatingInput" onBlur={(event) => getInsurance} onChange={(event) => setName(event.target.value)}/>
+                                                    <input type="text" className="form-control" id="floatingInput" onChange={(event) => setName(event.target.value)}/>
                                                     <label htmlFor="floatingInput">Name</label>
                                                 </div>
 

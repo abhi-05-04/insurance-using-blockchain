@@ -4,7 +4,7 @@ import insuranceFactory from './build/InsuranceFactory.json';
 
 const instance =  new web3.eth.Contract(
     JSON.parse(insuranceFactory.interface) ,
-    '0xC03eaAa801D19CF5270d23d41627D945bf861ff8'
+    '0xbAE54d262dE2de8e0803970247DAccc7504BD18D'
 );
 
 export default instance;

@@ -29,9 +29,9 @@ function App() {
     console.log((await Insurancefactory.methods.getDeployedInsurances().call()));
     if((await Insurancefactory.methods.getDeployedInsurances().call()).length == 0)
     {
-      // await Insurancefactory.methods.createInsurance('Health Insurance',1,2).send({from: accounts[0]});
-      // await Insurancefactory.methods.createInsurance('Life Insurance',2,3).send({from: accounts[0]});
-      await Insurancefactory.methods.createInsurance('Car Insurance',3,4).send({from: accounts[0]});
+      await Insurancefactory.methods.createInsurance('Health Insurance',1,3).send({from: accounts[0]});
+      await Insurancefactory.methods.createInsurance('Life Insurance',1,4).send({from: accounts[0]});
+      await Insurancefactory.methods.createInsurance('Car Insurance',1,2).send({from: accounts[0]});
     }
     console.log((await Insurancefactory.methods.getDeployedInsurances().call()).length);
   }
