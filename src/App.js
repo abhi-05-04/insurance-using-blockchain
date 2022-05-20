@@ -9,6 +9,7 @@ import Page404 from './Components/404';
 import Portfolio from './Screens/portfolio';
 import Healthinsurance from './Screens/Insurance/healthinsurance';
 import Claim from './Screens/Insurance/claim';
+import Admin from './Screens/Admin/index';
 // import InsuranceFactory from '../ethereum/admin'
 import Insurancefactory from './ethereum/admin';
 
