@@ -1,101 +1,70 @@
-import React from 'react'
+import React,{useEffect, useState} from 'react';
+import Insurance from '../../ethereum/insurance'
+import web3 from '../../ethereum/web3';
+import Insurancefactory from '../../ethereum/admin';
+import Web3 from 'web3';
 
 
 // import { useState } from 'react';
 
 
-export default function claim() {
-  // const router = useRouter();
-  // const [Prececription, setPrececription] = useState("");
-  // const [UPRNPhoto, setUPRNPhoto] = useState();
-  // const [desease, setDesease] = useState("");
-  // const [Passward, setPassward] = useState("");
+export default function Claim() {
 
-  // const handle_desease=(val)=>{
-  //     if(val=="1")
-  //     {
-  //         setDesease("Cough");
-  //     }
-  //     else if(val=="2")
-  //     {
-  //         setDesease("Fewer");
-  //     }
-  //     else if(val=="3")
-  //     {
-  //         setDesease("Cancer");
-  //     }
-  //     else if(val=="4")
-  //     {
-  //         setDesease("Covid");
-  //     }
-  //     console.log(desease);
-  // }
+  var [image, setImage] = useState();
+  var [describe, setDescribe] = useState();
+  var [insurance, setInsurance] = useState();
 
-  // const uprnPhoto=async(e) => {
-  //     const image = e.target.files[0]
+  useEffect(() =>{
+    window.addEventListener('load', async function() {
+        let accounts = await web3.eth.getAccounts();
+        // let listofInsurence = await Insurancefactory.methods.getDeployedInsurances().call();
+        console.log(await Insurancefactory.methods.getDeployedInsurances().call());
+        setInsurance(Insurance((await Insurancefactory.methods.getDeployedInsurances().call())[0]));
+        // if((await insurance.methods.getDeployedInsurances().call()).length == 0)
+        // {
+        //   // await Insurancefactory.methods.createInsurance('Health Insurance',1,2).send({from: accounts[0]});
+        //   // await Insurancefactory.methods.createInsurance('Life Insurance',2,3).send({from: accounts[0]});
+        //   await Insurancefactory.methods.createInsurance('Car Insurance',3,4).send({from: accounts[0]});
+        // }
+        // console.log(await insurance.methods.getName().call());
+    });
+})
 
-  //     const blob = await new Promise((resolve, reject) => {
-  //         const xhr = new XMLHttpRequest();
-  //         xhr.onload = function () {
-  //             resolve(xhr.response);
-  //         };
-  //         xhr.onerror = function (e) {
-  //             console.log(e);
-  //             reject(new TypeError('Network request failed'));
-  //         };
-  //         xhr.responseType = 'blob';
-  //         xhr.open('GET', image, true);
-  //         xhr.send(null);
-  //     });
-  //     const ref = firebase
-  //         .storage()
-  //         .ref()
-  //         .child(uuid.v4() + Name);
-  //     const snapshot = await ref.put(blob);
-  //     // We're done with the blob, close and release it
-  //     // blob.close();
-  //     const url = await snapshot.ref.getDownloadURL();
-  //     setUPRNPhoto(url);
-  // }
+  const getBase64 = async(e) => {
+    console.log(e.target.files[0]);
+    let reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = () =>{
+        console.log(reader.result);
+        setImage(reader.result);
+        // console.log(aadharImg)
+        // document = reader.result;
+    };
+    reader.onerror = function (error) {
+        console.log('Error: ', error);
+    };
+}
 
-  // const handleClick = async (event)=>{
-  //     event.preventDefault();
-  //     if(1)
-  //     {
-  //         try{
-  //             console.log(desease);
-  //                 console.log(Prececription);
-  //             axios({
-
-  //                 // Endpoint to send files
-  //                 url: `http://localhost:8080/adddiseases`,
-  //                 method: "POST",
-  //                 headers: {
-
-  //                 },
-
-  //                 // Attaching the form data
-  //                 data: {
-  //                     desease:desease,
-  //                     prescription:Prececription
-  //                 },
-  //               }).then((data)=>{
-  //                   console.log(data);
-  //                 alert("Data Added successfully");
-  //               }).catch((err)=>{
-  //                 alert("Something wen Wrong")
-  //                   console.log(err);
-  //               })
-  //               router.reload();
-  //         }
-  //         catch(err){
-  //             console.log("Something Went Wrong")
-  //             console.log(err);
-  //         }
-
-  //     }
-  // }
-
+const addClaim = async() =>{
+  var flag=false;
+  try{
+      const accounts = await web3.eth.getAccounts();
+      await insurance.methods.createClaim(describe,image).send({
+        gas:'5000000',gasPrice:'60000000000',from: accounts[0]
+      });
+      // if(flag)
+      // {
+      //   alert("Claim Created Successfully");
+      // }
+      // else
+      // {
+      //   alert("Claim Creation Failed");
+      // }
+  }
+  catch (err) {
+      alert("Error while adding Member");
+  }
+}
 
 
   return (
@@ -103,16 +72,16 @@ export default function claim() {
       <div className='container mt-3'>
         <div class="form-group mt-3">
           <label for="exampleFormControlTextarea1">Add Description </label>
-          <textarea class="form-control" id="exampleFormControlTextarea1"  rows="3" />
+          <textarea class="form-control" id="exampleFormControlTextarea1"  rows="3" onChange={(event) =>setDescribe(event.target.value)}/>
           {/* onChange={(e) => { setPrececription(e.target.value); }} */}
         </div>
         <div class="form-group mt-3">
           <label for="exampleFormControlFile1">Upload Proof:</label>
           <br />
-          <input type="file" class="form-control-file" id="exampleFormControlFile1" />
+          <input type="file" class="form-control-file" id="exampleFormControlFile1" onChange={getBase64}/>
         </div>
         {/* onClick={handleClick} */}
-        <button type="button" class="btn btn-secondary mt-5 " >Apply for claim</button>
+        <button type="button" class="btn btn-secondary mt-5 " onClick={addClaim} >Apply for claim</button>
       </div >
     </div>
 
