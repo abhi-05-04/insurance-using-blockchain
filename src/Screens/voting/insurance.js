@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import Insurance from '../ethereum/insurance'
-import web3 from '../ethereum/web3';
-import Insurancefactory from '../ethereum/admin';
+import Insurance from '../../ethereum/insurance'
+import web3 from '../../ethereum/web3';
+import Insurancefactory from '../../ethereum/admin';
 import Web3 from 'web3';
 
 export default function Portfolio() {
@@ -36,9 +36,7 @@ return (
       <div class="card mb-3 text-center">
         <div class="card-body">
           <h5 class="card-title">Health Insurance</h5>
-          <p>Nominee Metamask: {(tmp1[5])}</p>
-          <p>Wei: {(tmp1[6])}</p>
-          <a href="/insurance/claim" class="btn btn-primary">Claim</a>
+          <a href="/voting/healthvoting" class="btn btn-primary">Voting</a>
         </div>
 
       </div>
@@ -50,9 +48,7 @@ return (
       <div class="card mb-3 text-center">
         <div class="card-body">
           <h5 class="card-title">Life Insurance</h5>
-          <p>Nominee Metamask: {(tmp2[5])}</p>
-          <p>Wei: {(tmp2[6])}</p>
-          <a href="/insurance/lifeclaim" class="btn btn-primary">Claim</a>
+          <a href="/insurance/lifeclaim" class="btn btn-primary">Voting</a>
         </div>
 
       </div>
@@ -64,9 +60,7 @@ return (
       <div class="card mb-3 text-center">
         <div class="card-body">
           <h5 class="card-title">Car Insurance</h5>
-          <p>Nominee Metamask: {(tmp3[5])}</p>
-          <p>Wei: {(tmp3[6])}</p>
-          <a href="/insurance/carclaim" class="btn btn-primary">Claim</a>
+          <a href="/insurance/carclaim" class="btn btn-primary">Voting</a>
         </div>
 
       </div>

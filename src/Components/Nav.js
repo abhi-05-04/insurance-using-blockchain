@@ -8,14 +8,13 @@ export default function Nav() {
                                         <div className="main-nav">
                                                 <nav className="navbar navbar-expand-lg navbar-light">
                                                         <div className="container"><a className="navbar-brand" href="/">
-                                                                <img
-                                                                        src="./Flexa - React Next Insurance &amp; Finance Company Template_files/logo.png"
-                                                                        alt="logo" /></a><button className="navbar-toggler navbar-toggler-right" type="button"
-                                                                                data-toggle="collapse" data-target="#navbarSupportedContent"
-                                                                                aria-controls="navbarSupportedContent" aria-expanded="false"
-                                                                                aria-label="Toggle navigation"><span className="icon-bar top-bar"></span><span
-                                                                                        className="icon-bar middle-bar"></span><span
-                                                                                                className="icon-bar bottom-bar"></span></button>
+                                                                <p className='text-light '>Block-Life</p>
+                                                        </a><button className="navbar-toggler navbar-toggler-right" type="button"
+                                                                data-toggle="collapse" data-target="#navbarSupportedContent"
+                                                                aria-controls="navbarSupportedContent" aria-expanded="false"
+                                                                aria-label="Toggle navigation"><span className="icon-bar top-bar"></span><span
+                                                                        className="icon-bar middle-bar"></span><span
+                                                                                className="icon-bar bottom-bar"></span></button>
                                                                 <div className="collapse navbar-collapse show" id="navbarSupportedContent">
                                                                         <ul className="navbar-nav m-auto">
                                                                                 <li className="nav-item"><a className="nav-link"
@@ -35,7 +34,7 @@ export default function Nav() {
                                                                                 {/* <li className="nav-item"><a className="nav-link"
                                                                                         href="/#">Pages <i
                                                                                                 className="bx bx-chevron-down"></i></a> */}
-                                                                                        {/* <ul className="dropdown-menu">
+                                                                                {/* <ul className="dropdown-menu">
                                                                                                 <li className="nav-item"><a className="nav-link"
                                                                                                         href="/team">Team</a></li>
                                                                                                 <li className="nav-item"><a className="nav-link"
@@ -95,7 +94,7 @@ export default function Nav() {
                                                                                         </ul> */}
                                                                                 </li>
                                                                                 <li className="nav-item"><a className="nav-link"
-                                                                                        href="/#">Portfolio <i
+                                                                                        href="/portfolio">Portfolio <i
                                                                                                 className="bx bx-chevron-down"></i></a>
                                                                                         {/* <ul className="dropdown-menu">
                                                                                                 <li className="nav-item"><a className="nav-link"
@@ -115,7 +114,7 @@ export default function Nav() {
                                                                                 {/* <li className="nav-item"><a className="nav-link"
                                                                                         href="/#">Blog <i
                                                                                                 className="bx bx-chevron-down"></i></a> */}
-                                                                                        {/* <ul className="dropdown-menu">
+                                                                                {/* <ul className="dropdown-menu">
                                                                                                 <li className="nav-item"><a className="nav-link"
                                                                                                         href="/blog-grid">Blog Grid</a>
                                                                                                 </li>
@@ -131,7 +130,10 @@ export default function Nav() {
                                                                                         </ul> */}
                                                                                 {/* </li> */}
                                                                                 <li className="nav-item"><a className="nav-link"
+                                                                                        href="/voting">Vote</a></li>
+                                                                                <li className="nav-item"><a className="nav-link"
                                                                                         href="/#Contact">Contact</a></li>
+
                                                                         </ul>
                                                                 </div>
                                                         </div>

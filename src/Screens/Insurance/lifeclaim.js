@@ -19,7 +19,7 @@ export default function Claim() {
         let accounts = await web3.eth.getAccounts();
         // let listofInsurence = await Insurancefactory.methods.getDeployedInsurances().call();
         console.log(await Insurancefactory.methods.getDeployedInsurances().call());
-        setInsurance(Insurance((await Insurancefactory.methods.getDeployedInsurances().call())[0]));
+        setInsurance(Insurance((await Insurancefactory.methods.getDeployedInsurances().call())[1]));
         // if((await insurance.methods.getDeployedInsurances().call()).length == 0)
         // {
         //   // await Insurancefactory.methods.createInsurance('Health Insurance',1,2).send({from: accounts[0]});

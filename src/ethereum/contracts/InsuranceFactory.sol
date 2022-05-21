@@ -64,8 +64,8 @@ contract Insurance{
     uint public approversCount; //track the number of members who donated or contributed 
     // mapping(address=>address) public nominee;//nominee=>member
     uint public minAmmount;
-    address[] public memberAddress;
-    address[] public claimAddress;
+    // address[] public memberAddress;
+    
     // mapping(address=>uint)public premium;//to keep track who paid how much
 
     modifier restricted() {
@@ -217,13 +217,13 @@ contract Insurance{
         return false;
     }
 
-    function getMembersList() public returns(address[])
+    function getMembersList() public view returns(address[])
     {
-        delete memberAddress;
         uint i=0;
+        address[] memory memberAddress=new address[](members.length);
         for(i=0;i < members.length;i++)
         {
-            memberAddress.push(members[i].memberMetaMask);
+            memberAddress[i]=members[i].memberMetaMask;
         }
         return memberAddress;
     }
@@ -250,16 +250,16 @@ contract Insurance{
         );
     }
 
-    function getClaimList(uint flag) public returns(address[])
+    function getClaimList(uint flag) public view returns(address[])
     {
-        delete claimAddress;
+        address[] memory claimAddress=new address[](members.length);
         uint i=0;
         if(flag== 1)
         {
             for(i=0;i < claims.length;i++)
             {
-                if(claims[i].approve == true)
-                    claimAddress.push(claims[i].member);
+                if(claims[i].approve == true && claims[i].complete == false)
+                    claimAddress[i]=claims[i].member;
             }
         }
         else if(flag==2)
@@ -267,14 +267,15 @@ contract Insurance{
             for(i=0;i < claims.length;i++)
             {
                 if(claims[i].complete == true)
-                    claimAddress.push(claims[i].member);
+                    claimAddress[i]=claims[i].member;
             }
         }
         else
         {
             for(i=0;i < claims.length;i++)
             {
-                claimAddress.push(claims[i].member);
+                if(claims[i].approve == false)
+                claimAddress[i]=claims[i].member;
             }
         }
         return claimAddress;
@@ -284,14 +285,25 @@ contract Insurance{
         string,
         string,
         uint ,
-        address) 
+        address,
+        uint,
+        uint
+        ) 
     {
+        uint i=0;
         Claim storage c = claiminfo[membAddress];
+        for( i=0;i<claims.length;i++)
+        {
+            if(c.recipient == claims[i].recipient)
+                break;
+        }
         return (
         c.description,
         c.descriptondoc,
         c.value,
-        c.recipient
+        c.recipient,
+        i,
+        c.approvalCount
         );
     }
 }

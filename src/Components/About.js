@@ -2,7 +2,10 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./About.css"
 import "./About1.css"
-import image1 from '../Images/home.png'
+import home from '../Images/home.png'
+import image1 from '../Images/hi.jpeg'
+import image21 from '../Images/li.jpeg'
+import image31 from '../Images/ci.jpeg'
 import image2 from '../Images/3567801.jpg'
 import bg from '../Images/bg/bg2.jpg'
 import securei from '../Images/svg/secure.svg'
@@ -31,7 +34,7 @@ export default function About() {
                         <div className="row">
                             <div className="col-md-6">
                                 <img
-                                    src={image1}
+                                    src={home}
                                     alt="Insurance image"
                                 />
                             </div>
@@ -101,9 +104,9 @@ export default function About() {
                                 <div className="flex align-items-center">
                                     <div className="card">
                                         {/* style="width: 18rem;" */}
-                                        <img className="card-img-top" src={image1} alt="Card image cap" />
+                                        <img className="card-img-top" src={image21} alt="Card image cap" />
                                         <div className="card-body">
-                                            <h5 className="card-title">Life Insurance</h5>
+                                            <h5 className="card-title">Health Insurance</h5>
                                             <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                                             <a href="/insurance" className="btn btn-primary">View Details</a>
                                         </div>
@@ -116,11 +119,11 @@ export default function About() {
                                 <div className="flex align-items-center  ">
                                     <div className="card">
                                         {/* style="width: 18rem;" */}
-                                        <img className="card-img-top" src={image1} alt="Card image cap" />
+                                        <img className="card-img-top" src={image31} alt="Card image cap" />
                                         <div className="card-body">
-                                            <h5 className="card-title">Health Insurance</h5>
+                                            <h5 className="card-title">Life Insurance</h5>
                                             <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                            <a href="#" className="btn btn-primary">View Details</a>
+                                            <a href="/insurance/lifeinsuranceinfo" className="btn btn-primary">View Details</a>
                                         </div>
                                     </div>
                                 </div>
@@ -135,26 +138,14 @@ export default function About() {
                                         <div className="card-body">
                                             <h5 className="card-title">Car Insurance</h5>
                                             <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                            <a href="#" className="btn btn-primary">View Details</a>
+                                            <a href="/insurance/carinsuranceinfo" className="btn btn-primary">View Details</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             {/* <!--end col--> */}
 
-                            <div className="col-md-6 mb-4">
-                                <div className="flex align-items-center  ">
-                                    <div className="card">
-                                        {/* style="width: 18rem;" */}
-                                        <img className="card-img-top" src={image1} alt="Card image cap" />
-                                        <div className="card-body">
-                                            <h5 className="card-title">Card title</h5>
-                                            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                            <a href="#" className="btn btn-primary">View Details</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            
                             {/* <!--end col--> */}
                         </div>
                     </div>
@@ -219,7 +210,7 @@ export default function About() {
                                 </div>
                             </div>
                             {/* <!--end col--> */}
-
+{/* 
                             <div className="col-md-6 mb-4">
                                 <div className="flex align-items-center  ">
                                     <div className="icon-box-rounded">
@@ -231,10 +222,10 @@ export default function About() {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                             {/* <!--end col--> */}
 
-                            <div className="col-md-6 mb-4">
+                            {/* <div className="col-md-6 mb-4">
                                 <div className="flex align-items-center  ">
                                     <div className="icon-box-rounded">
                                         <img
@@ -248,10 +239,10 @@ export default function About() {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                             {/* <!--end col--> */}
 
-                            <div className="col-md-6 mb-4">
+                            {/* <div className="col-md-6 mb-4">
                                 <div className="flex align-items-center  ">
                                     <div className="icon-box-rounded">
                                         <img src="/Images/svg/maintain.svg" alt="maintain" />
@@ -262,7 +253,7 @@ export default function About() {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                             {/* <!--end col--> */}
                         </div>
                     </div>
@@ -271,47 +262,8 @@ export default function About() {
                     {/* <!-- Footer --> */}
                     <footer className="page-footer font-small teal pt-4">
 
-                        {/* <!-- Footer Text --> */}
-                        <div className="container-fluid text-center text-md-left">
-
-                            {/* <!-- Grid row --> */}
-                            <div className="row">
-
-                                {/* <!-- Grid column --> */}
-                                <div className="col-md-6 mt-md-0 mt-3">
-
-                                    {/* <!-- Content --> */}
-                                    <h5 className="text-uppercase font-weight-bold">Footer text 1</h5>
-                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita sapiente sint, nulla, nihil
-                                        repudiandae commodi voluptatibus corrupti animi sequi aliquid magnam debitis, maxime quam recusandae
-                                        harum esse fugiat. Itaque, culpa?</p>
-
-                                </div>
-                                {/* <!-- Grid column --> */}
-
-                                <hr className="clearfix w-100 d-md-none pb-3" />
-
-                                {/* <!-- Grid column --> */}
-                                <div className="col-md-6 mb-md-0 mb-3">
-
-                                    {/* <!-- Content --> */}
-                                    <h5 className="text-uppercase font-weight-bold">Footer text 2</h5>
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio deserunt fuga perferendis modi earum
-                                        commodi aperiam temporibus quod nulla nesciunt aliquid debitis ullam omnis quos ipsam, aspernatur id
-                                        excepturi hic.</p>
-
-                                </div>
-                                {/* <!-- Grid column --> */}
-
-                            </div>
-                            {/* <!-- Grid row --> */}
-
-                        </div>
-                        {/* <!-- Footer Text --> */}
-
-                        {/* <!-- Copyright --> */}
                         <div className="footer-copyright text-center py-3">© 2022 Copyright: 
-                            <a href="/"> charpaleabhi@gmail.com</a>
+                            <a href="/"> 2019BTECS00071,2019BTECS00064,2019BTECS00070</a>
                         </div>
                         {/* <!-- Copyright --> */}
 

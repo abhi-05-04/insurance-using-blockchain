@@ -1,16 +1,17 @@
 
-import React,{useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 // import { useState, useEffect } from 'react';
 import 'mdb-ui-kit/css/mdb.min.css'; //cdd
 import Insurance from '../../ethereum/insurance'
 import web3 from '../../ethereum/web3';
 import Insurancefactory from '../../ethereum/admin';
 import Web3 from 'web3';
-
+import axios from 'axios';
+import {firebase} from './firebase'
 function Healthinsurance() {
 
     // const webcall = async()=> {
-        
+
     //   }
     var [name, setName] = useState();
     var [aadhar, setAadhar] = useState();
@@ -20,9 +21,9 @@ function Healthinsurance() {
     var [ether, setEther] = useState();
     var [aadharImg, setAadharImg] = useState();
     var [insurance, setInsurance] = useState();
-    
-    useEffect(() =>{
-        window.addEventListener('load', async function() {
+
+    useEffect(() => {
+        window.addEventListener('load', async function () {
             let accounts = await web3.eth.getAccounts();
             // let listofInsurence = await Insurancefactory.methods.getDeployedInsurances().call();
             console.log(await Insurancefactory.methods.getDeployedInsurances().call());
@@ -36,33 +37,56 @@ function Healthinsurance() {
             // console.log(await insurance.methods.getName().call());
         });
     })
-      
+
     //   useEffect(()=>{
     //     webcall();
     //   },[])
 
-    const getBase64 = async(e) => {
-        var document = "";
-        console.log(e.target.files[0]);
-        let reader = new FileReader();
-        reader.readAsDataURL(e.target.files[0]);
-        reader.onload = () =>{
-            console.log(reader.result);
-            setAadharImg(reader.result);
-            // console.log(aadharImg)
-            // document = reader.result;
+    const getBase64 = async (e) => {
+        
+        const file = e.target.files[0];
+        const image = file
+
+        const filename = file.name;
+        console.log(file)
+        const blob = await new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                console.log(xhr.response);
+                resolve(xhr.response);
+            };
+            xhr.onerror = function (e) {
+                console.log(e);
+                reject(new TypeError('Network request failed'));
+            };
+            xhr.responseType = 'blob';
+            xhr.open('GET', file, true);
+            xhr.send(null);
+        });
+        console.log(blob);
+
+        const metadata = {
+            contentType: file.type,
         };
-        reader.onerror = function (error) {
-            console.log('Error: ', error);
-        };
+        const ref = firebase
+            .storage()
+            .ref()
+            .child(filename);
+        const snapshot = await ref.put(file, metadata);
+        // We're done with the blob, close and release it
+        // blob.close();
+        const url = await snapshot.ref.getDownloadURL();
+        // setUrl(url);
+        setAadharImg(url);
+        console.log(url);
     }
 
-    const addMember = async() =>{
+    const addMember = async () => {
         console.log(await insurance.methods.getName().call())
-        try{
+        try {
             const accounts = await web3.eth.getAccounts();
-            await insurance.methods.contribute(name,aadhar,email,mobile,aadharImg,nominee).send({
-                gas:'5000000',gasPrice:'60000000000',value: Web3.utils.toWei(ether,'ether'),from: accounts[0]
+            await insurance.methods.contribute(name, aadhar, email, mobile, aadharImg, nominee).send({
+                gas: '5000000', gasPrice: '60000000000', value: Web3.utils.toWei(ether, 'ether'), from: accounts[0]
             });
         }
         catch (err) {
@@ -94,36 +118,36 @@ function Healthinsurance() {
                                             <form>
                                                 <p class="text-uppercase">Your Applying Metamask id : </p>
                                                 <div className="form-floating mb-3">
-                                                    <input type="text" className="form-control" id="floatingInput" onChange={(event) => setName(event.target.value)}/>
+                                                    <input type="text" className="form-control" id="floatingInput" onChange={(event) => setName(event.target.value)} />
                                                     <label htmlFor="floatingInput">Name</label>
                                                 </div>
 
                                                 <div className="form-floating mb-3">
-                                                    <input type="email" className="form-control" id="floatingInput" onChange={(event) => setAadhar(event.target.value)}/>
+                                                    <input type="email" className="form-control" id="floatingInput" onChange={(event) => setAadhar(event.target.value)} />
                                                     <label htmlFor="floatingInput">Aadhar Card</label>
                                                 </div>
                                                 <div className="form-floating mb-3">
-                                                    <input type="email" className="form-control" id="floatingInput" onChange={(event) => setEmail(event.target.value)}/>
+                                                    <input type="email" className="form-control" id="floatingInput" onChange={(event) => setEmail(event.target.value)} />
                                                     <label htmlFor="floatingInput">Email address</label>
                                                 </div>
                                                 <div className="form-floating mb-3">
-                                                    <input type="email" className="form-control" id="floatingInput" onChange={(event) => setMobile(event.target.value)}/>
+                                                    <input type="email" className="form-control" id="floatingInput" onChange={(event) => setMobile(event.target.value)} />
                                                     <label htmlFor="floatingInput">Mobile Number</label>
                                                 </div>
 
                                                 <div className="form-group">
                                                     <label className="form-label" htmlFor="exampleFormControlFile1">Upload Aadhaar</label>
                                                     {/* <label htmlFor="exampleFormControlFile1">Upload Aadhaar</label> */}
-                                                    <input type="file" className="form-control-file" id="exampleFormControlFile1" onChange={getBase64}/>
+                                                    <input type="file" className="form-control-file" id="exampleFormControlFile1" onChange={getBase64} />
                                                 </div>
                                                 <br />
                                                 <div className="form-floating mb-3">
-                                                    <input type="email" className="form-control" id="floatingInput" onChange={(event) => setNominee(event.target.value)}/>
+                                                    <input type="email" className="form-control" id="floatingInput" onChange={(event) => setNominee(event.target.value)} />
                                                     <label htmlFor="floatingInput">Nominee MetamaskID</label>
                                                 </div>
 
                                                 <div className="form-floating mb-3">
-                                                    <input type="email" className="form-control" id="floatingInput" onChange={(event) => setEther(event.target.value)}/>
+                                                    <input type="email" className="form-control" id="floatingInput" onChange={(event) => setEther(event.target.value)} />
                                                     <label htmlFor="floatingInput">Ethers</label>
                                                 </div>
 

@@ -3,8 +3,8 @@ const Web3=require('web3');
 const insurancefactory = require('./build/InsuranceFactory.json');
 
 const provider=new HDWalletProvider(
-	'wave blame okay very copper title casual risk blade squeeze moral panda',
-    'https://ropsten.infura.io/v3/5cd63ae0543843139d2d9928396ccaec'
+	'work mosquito torch submit syrup toward remind inherit shock badge there tonight',
+    'https://ropsten.infura.io/v3/54f7068c90b84254a8b83a5696a41317'
 );
 
 const web3=new Web3(provider);
